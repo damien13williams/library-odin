@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Damien's Library</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+
+    <h1>Damien's Library</h1>
+    
+    <button type="button" class="button">New Book</button>
+
+    <form class="myForm" id="book-form" style="display: none;">
+        <!-- Form fields for new book -->
+        <label for="book-title">Book Title:</label><br>
+        <input type="text" id="book-title"><br>
+
+        <label for="book-author">Book Author:</label><br>
+        <input type="text" id="book-author"><br>
+
+        <label for="book-pages">Number of Pages:</label><br>
+        <input type="number" id="book-pages"><br>
+
+        <label for="book-read">Read?</label><br>
+        <input type="checkbox" id="book-read"><br>
+
+        <input type="submit" value="Submit">
+    </form>
+
+    <div id="library">
+        <!-- Books will be dynamically added here -->
+    </div>
+
+    <script src="index.js">
+      
+    </script>
+
+  </body>
+</html>
