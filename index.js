@@ -47,7 +47,7 @@ function displayBooks() {
   booksToDisplay.forEach((book, index) => {
     const bookCard = document.createElement("div");
     bookCard.classList.add("book");
-    bookCard.setAttribute("data-index", index);
+    bookCard.setAttribute("data-index", index); // Use index instead of actualIndex
 
     // Create a string to represent stars
     let stars = '';
@@ -66,21 +66,23 @@ function displayBooks() {
       <button class="edit-btn">Edit Button</button>
     `;
 
+    // Add event listeners
     bookCard.querySelector(".remove-btn").addEventListener("click", function () {
-      removeBook(index);
+      removeBook(index); // Use the correct index
     });
 
     bookCard.querySelector(".toggle-read-btn").addEventListener("click", function () {
-      toggleReadStatus(index);
+      toggleReadStatus(index); // Use the correct index
     });
 
     bookCard.querySelector(".edit-btn").addEventListener("click", function () {
-      editBook(index);
+      editBook(index); // Use the correct index
     });
 
     libraryContainer.appendChild(bookCard);
   });
 }
+
 
 // Remove Book
 function removeBook(index) {
@@ -96,6 +98,21 @@ function toggleReadStatus(index) {
 
 // Edit Book
 function editBook(index){
+  const book = myLibrary[index];
+
+  isEditing = true; // Activate editing mode
+  editingIndex = index; // Store the index of the book being edited
+
+  document.getElementById("book-title").value = book.title;
+  document.getElementById("book-author").value = book.author;
+  document.getElementById("book-pages").value = book.pages;
+  document.getElementById("book-read").checked = book.read;
+  document.querySelector(`input[name="rating"][value="${book.stars}"]`).checked = true;
+
+  document.getElementById("book-form").style.display = "block";
+
+  // Scroll to the form
+  document.getElementById("book-form").scrollIntoView({ behavior: "smooth" });
 
 }
 // Listener to display form when new book button clicked
@@ -123,14 +140,27 @@ document.getElementById("submit-button").addEventListener("click", function (eve
     return;
   }
 
-  addBookToLibrary(title, author, pages, read, stars);
+  if (isEditing) {
+    // Update the existing book
+    myLibrary[editingIndex] = { title, author, pages, read, stars };
+    isEditing = false; // Reset editing mode
+    editingIndex = null; // Reset index
+  } else {
+    // Add a new book
+    addBookToLibrary(title, author, pages, read, stars);
+  }
 
+  // Clear the form and hide it
   document.getElementById("book-title").value = "";
   document.getElementById("book-author").value = "";
   document.getElementById("book-pages").value = "";
   document.getElementById("book-read").checked = false;
   document.getElementById("book-form").style.display = "none";
+
+  // Refresh the displayed list of books
+  displayBooks();
 });
+
 
 document.getElementById("filter").addEventListener("change", displayBooks);
 
