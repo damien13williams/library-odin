@@ -1,93 +1,160 @@
 
-// Array to store all the books
 const myLibrary = [];
+let isEditing = false; // Tracks if you're editing a book
+let editingIndex = null; // Stores the index of the book being edited
 
-// Book constructor
-function Book(title, author, pages, read) {
+// Test cases
+addBookToLibrary("The Great Gatsby", "F. Scott Fitzgerald", 218, true, 5);
+addBookToLibrary("To Kill a Mockingbird", "Harper Lee", 281, false, 4);
+addBookToLibrary("1984", "George Orwell", 328, true, 3);
+
+function Book(title, author, pages, read, stars) {
   this.title = title;
   this.author = author;
   this.pages = pages;
   this.read = read;
+  this.stars = stars;
 }
 
-// Add a book to the library array
-function addBookToLibrary(title, author, pages, read) {
-  const book = new Book(title, author, pages, read);
+function filterByCategory(books, filterOption) {
+  if (filterOption === "highToLow") {
+    return [...books].sort((a, b) => b.pages - a.pages); // Sort by pages high to low
+  } else if (filterOption === "lowToHigh") {
+    return [...books].sort((a, b) => a.pages - b.pages); // Sort by pages low to high
+  } else if (filterOption === "title") {
+    return [...books].sort((a, b) => a.title.localeCompare(b.title)); // Sort by title alphabetically
+  } else if (filterOption === "author") {
+    return [...books].sort((a, b) => a.author.localeCompare(b.author)); // Sort by author alphabetically
+  } else if (filterOption === "stars") {
+    return [...books].sort((a, b) => b.stars - a.stars); // Sort by stars high to low
+  }
+  return books; // If 'all' is selected or no filter, return the books as is
+}
+
+function addBookToLibrary(title, author, pages, read, stars) {
+  const book = new Book(title, author, pages, read, stars);
   myLibrary.push(book);
   displayBooks(); // Update display after adding
 }
 
-// Function to display books
 function displayBooks() {
   const libraryContainer = document.getElementById("library");
-  libraryContainer.innerHTML = ""; // Clear the library before displaying
+  libraryContainer.innerHTML = ""; // Clear previous display
 
-  myLibrary.forEach((book, index) => {
-    // Create the book card
+  const filterOption = document.getElementById("filter").value;
+  const booksToDisplay = filterByCategory(myLibrary, filterOption);
+
+  booksToDisplay.forEach((book, index) => {
     const bookCard = document.createElement("div");
     bookCard.classList.add("book");
     bookCard.setAttribute("data-index", index);
 
-    // Add book details to the card
+    // Create a string to represent stars
+    let stars = '';
+    for (let i = 1; i <= 5; i++) {
+      stars += i <= book.stars ? '&#9733;' : '&#9734;'; // Filled or empty stars
+    }
+
     bookCard.innerHTML = `
       <h2>${book.title}</h2>
       <p>by ${book.author}</p>
       <p>Pages: ${book.pages}</p>
+      <p>Stars: ${stars}</p>
       <p>Read: <span class="status">${book.read ? "Yes" : "No"}</span></p>
       <button class="remove-btn">Remove</button>
       <button class="toggle-read-btn">Toggle Read Status</button>
+      <button class="edit-btn">Edit Button</button>
     `;
 
-    // Add event listener for remove button
-    bookCard.querySelector(".remove-btn").addEventListener("click", function() {
+    bookCard.querySelector(".remove-btn").addEventListener("click", function () {
       removeBook(index);
     });
 
-    // Add event listener for toggle read button
-    bookCard.querySelector(".toggle-read-btn").addEventListener("click", function() {
+    bookCard.querySelector(".toggle-read-btn").addEventListener("click", function () {
       toggleReadStatus(index);
     });
 
-    // Append the card to the library
+    bookCard.querySelector(".edit-btn").addEventListener("click", function () {
+      editBook(index);
+    });
+
     libraryContainer.appendChild(bookCard);
   });
 }
 
-// Remove a book from the library
+// Remove Book
 function removeBook(index) {
-  myLibrary.splice(index, 1); // Remove book from array
-  displayBooks(); // Update display
+  myLibrary.splice(index, 1);
+  displayBooks();
 }
 
-// Toggle the read status of a book
+// Toggle Read Status
 function toggleReadStatus(index) {
   myLibrary[index].read = !myLibrary[index].read;
-  displayBooks(); // Update display after toggling status
+  displayBooks();
 }
 
-// Event listener for form submission
-document.getElementById("book-form").addEventListener("submit", function(event) {
-  event.preventDefault(); // Prevent the default form submission
+// Edit Book
+function editBook(index){
 
-  // Get input values
-  const title = document.getElementById("book-title").value;
-  const author = document.getElementById("book-author").value;
-  const pages = document.getElementById("book-pages").value;
+}
+// Listener to display form when new book button clicked
+document.getElementById("button").addEventListener("click", function () {
+  const form = document.getElementById("book-form");
+  if (form.style.display === "none" || form.style.display === "") {
+    form.style.display = "block"; // Show the form
+  } else {
+    form.style.display = "none"; // Hide the form
+  }
+});
+
+// SUBMIT button to adding a book function 
+document.getElementById("submit-button").addEventListener("click", function (event) {
+  event.preventDefault();
+
+  const title = document.getElementById("book-title").value.trim();
+  const author = document.getElementById("book-author").value.trim();
+  const pages = parseInt(document.getElementById("book-pages").value.trim());
+  const stars = parseInt(document.querySelector('input[name="rating"]:checked').value);
   const read = document.getElementById("book-read").checked;
 
-  // Add book to the library
-  addBookToLibrary(title, author, pages, read);
+  if (!title || !author || isNaN(pages) || isNaN(stars)) {
+    alert("Please fill in all fields correctly.");
+    return;
+  }
 
-  // Reset and hide the form
-  document.getElementById("book-form").reset();
+  addBookToLibrary(title, author, pages, read, stars);
+
+  document.getElementById("book-title").value = "";
+  document.getElementById("book-author").value = "";
+  document.getElementById("book-pages").value = "";
+  document.getElementById("book-read").checked = false;
   document.getElementById("book-form").style.display = "none";
 });
 
-// Show the form when "New Book" button is clicked
-document.querySelector(".button").addEventListener("click", function() {
-  document.getElementById("book-form").style.display = "block";
+document.getElementById("filter").addEventListener("change", displayBooks);
+
+
+document.addEventListener('DOMContentLoaded', () => {
+  // Get all the radio inputs and labels
+  const stars = document.querySelectorAll('#stars input');
+  const labels = document.querySelectorAll('#stars label');
+
+  // Add event listeners to the radio buttons
+  stars.forEach((star, index) => {
+    star.addEventListener('change', () => {
+      const selectedRating = parseInt(star.value);
+      
+      // Remove the 'selected' class from all labels
+      labels.forEach((label) => label.classList.remove('selected'));
+      
+      // Add 'selected' to the appropriate labels
+      for (let i = 0; i < selectedRating; i++) {
+        labels[i].classList.add('selected');
+      }
+    });
+  });
 });
 
-// Example: Manually add some books to the library for display
-addBookToLibrary("The Great Gatsby", "F. Scott Fitzgerald", 218, true);
-addBookToLibrary("To Kill a Mockingbird", "Harper Lee", 281, false);
+// Initial display of books
+displayBooks();
