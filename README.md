@@ -3,7 +3,12 @@
 # Library Project
 # This is the project that can be found in the Odin project under the javscript unit and in chapter "Organizing your javascript code"
 
-# 
+![Library Screenshot](library-odin.png)
+
+![Add Book Screenshot](newbook.png)
+
+![Filter Screenshot](filter.png)
+
 
 <!-- 
 Tasks To-Do:
