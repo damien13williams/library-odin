@@ -1,6 +1,9 @@
 # library-odin
 
-# this is an odin project base on organzing and using javascript code to display a library of books
+# Library Project
+# This is the project that can be found in the Odin project under the javscript unit and in chapter "Organizing your javascript code"
+
+# 
 
 <!-- 
 Tasks To-Do:
