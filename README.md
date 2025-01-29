@@ -4,13 +4,13 @@
 # This is the project that can be found in the Odin project under the javscript unit and in chapter "Organizing your javascript code"
 
 # Screenshot of application
-![Library Screenshot](library-odin.png)
+![Library Screenshot](images/library-odin.png)
 
 # Screenshot of new book form
-![Add Book Screenshot](newbook.png)
+![Add Book Screenshot](images/newbook.png)
 
 # Screenshot of filter usage
-![Filter Screenshot](filter.png)
+![Filter Screenshot](images/filter.png)
 
 # Technologies used:
 ## Javascript
