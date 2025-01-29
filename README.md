@@ -10,7 +10,7 @@ Tasks To-Do:
 4. Add a button on each book’s display to remove the book from the library. +++
 5. Add a button on each book’s display to change its read status. +++
 6. Add a drop down to sort through library based on different filters +++
-7. Add an edit option for the user to edit a specific book ---
+7. Add an edit option for the user to edit a specific book +++
 
 
 
