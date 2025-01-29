@@ -1,7 +1,7 @@
 
 const myLibrary = [];
-let isEditing = false; // Tracks if you're editing a book
-let editingIndex = null; // Stores the index of the book being edited
+let isEditing = false; 
+let editingIndex = null; 
 
 // Test cases
 addBookToLibrary("The Great Gatsby", "F. Scott Fitzgerald", 218, true, 5);
@@ -28,15 +28,17 @@ function filterByCategory(books, filterOption) {
   } else if (filterOption === "stars") {
     return [...books].sort((a, b) => b.stars - a.stars); // Sort by stars high to low
   }
-  return books; // If 'all' is selected or no filter, return the books as is
+  return books; // If 'none' is selected, return the books as is
 }
 
+// Add a book to the library
 function addBookToLibrary(title, author, pages, read, stars) {
   const book = new Book(title, author, pages, read, stars);
   myLibrary.push(book);
   displayBooks(); // Update display after adding
 }
 
+// Display books in the library 
 function displayBooks() {
   const libraryContainer = document.getElementById("library");
   libraryContainer.innerHTML = ""; // Clear previous display
@@ -55,6 +57,7 @@ function displayBooks() {
       stars += i <= book.stars ? '&#9733;' : '&#9734;'; // Filled or empty stars
     }
 
+    // Book card html
     bookCard.innerHTML = `
       <h2>${book.title}</h2>
       <p>by ${book.author}</p>
@@ -79,6 +82,7 @@ function displayBooks() {
       editBook(index); // Use the correct index
     });
 
+    // Add book to library to display after
     libraryContainer.appendChild(bookCard);
   });
 }
@@ -109,9 +113,9 @@ function editBook(index){
   document.getElementById("book-read").checked = book.read;
   document.querySelector(`input[name="rating"][value="${book.stars}"]`).checked = true;
 
-  document.getElementById("book-form").style.display = "block";
+  document.getElementById("book-form").style.display = "block"; // Show form
 
-  // Scroll to the form
+  // Scroll to the form 
   document.getElementById("book-form").scrollIntoView({ behavior: "smooth" });
 
 }
@@ -135,6 +139,7 @@ document.getElementById("submit-button").addEventListener("click", function (eve
   const stars = parseInt(document.querySelector('input[name="rating"]:checked').value);
   const read = document.getElementById("book-read").checked;
 
+  // To make sure all fields are completed
   if (!title || !author || isNaN(pages) || isNaN(stars)) {
     alert("Please fill in all fields correctly.");
     return;
@@ -144,7 +149,7 @@ document.getElementById("submit-button").addEventListener("click", function (eve
     // Update the existing book
     myLibrary[editingIndex] = { title, author, pages, read, stars };
     isEditing = false; // Reset editing mode
-    editingIndex = null; // Reset index
+    editingIndex = null; // Reset edit index
   } else {
     // Add a new book
     addBookToLibrary(title, author, pages, read, stars);

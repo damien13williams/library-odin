@@ -154,6 +154,7 @@ button:hover {
     }
 }
 
+/* Stars */
 #stars {
     display: flex;
     gap: 5px;
