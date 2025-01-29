@@ -1,32 +1,38 @@
-# library-odin
+# **Library-Odin**
 
-# Library Project
-# This is the project that can be found in the Odin project under the javscript unit and in chapter "Organizing your javascript code"
+## **Library Project**
+This project is part of the JavaScript curriculum in the Odin Project under the "Organizing Your JavaScript Code" chapter. It is a simple library app that allows users to manage their book collection with various features such as adding, editing, filtering, and rating books.
 
-# Screenshot of application
-![Library Screenshot](images/library-odin.png)
+---
 
-# Screenshot of new book form
-![Add Book Screenshot](images/newbook.png)
+## **Application Screenshots**
 
-# Screenshot of filter usage
-![Filter Screenshot](images/filter.png)
+### **Main Library View**  
+![Library Screenshot](/library-odin.png)  
 
-# Technologies used:
-## Javascript
-## HTML
-## CSS
+### **New Book Form**  
+![Add Book Screenshot](/newbook.png)  
 
-# Features Implemented:
-## Required: 
-### Book objects stored in an array
-### Display function using loop
-### Add new book functionality (author, title, pages, wether it has been read)
-### Remove functionality
-## Additional I Did:
-### Stars rating for a user to give
-### Edit functionality for each book
-### Filter functionality (title, pages (high to low, low to high), rating, none, author)
+### **Filter Feature**  
+![Filter Screenshot](/filter.png)  
+
+---
+
+## **Technologies Used**
+- **JavaScript**: Handles application logic and user interactions.
+- **HTML**: Provides the structure for the app.
+- **CSS**: Styles and layouts for better user experience.
+
+---
+
+## **Features Implemented**
+
+### **Core Requirements:**
+- **Book Storage:** Book objects are stored in an array for easy access and modification.
+- **Display Function:** Uses loops to dynamically display books on the page.
+- **Add New Book:** Users can add books with details like author, title, pages, and read status.
+- **Remove Book:** A delete option for users to remove books from the list.
+
 
 # Usage Guidelines:
 ## Write this
