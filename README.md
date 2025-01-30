@@ -1,20 +1,20 @@
 # **Library-Odin**
 
 ## **Library Project**
-This project is part of the JavaScript curriculum in the Odin Project under the "Organizing Your JavaScript Code" chapter. It is a simple library app that allows users to manage their book collection with various features such as adding, editing, filtering, and rating books.
+This project is part of the JavaScript unit in the Odin Project under the "Organizing Your JavaScript Code" chapter. It is a simple library app that allows users to manage their book collection with various features such as adding, editing, filtering, and rating books.
 
 ---
 
 ## **Application Screenshots**
 
 ### **Main Library View**  
-![Library Screenshot](/library-odin.png)  
+![Library Screenshot](images/library-odin.png)  
 
 ### **New Book Form**  
-![Add Book Screenshot](/newbook.png)  
+![Add Book Screenshot](images/newbook.png)  
 
 ### **Filter Feature**  
-![Filter Screenshot](/filter.png)  
+![Filter Screenshot](images/filter.png)  
 
 ---
 
@@ -28,24 +28,45 @@ This project is part of the JavaScript curriculum in the Odin Project under the 
 ## **Features Implemented**
 
 ### **Core Requirements:**
+- **Toggle Function:** Book are allowed to be toggled as read or not read.
 - **Book Storage:** Book objects are stored in an array for easy access and modification.
 - **Display Function:** Uses loops to dynamically display books on the page.
 - **Add New Book:** Users can add books with details like author, title, pages, and read status.
 - **Remove Book:** A delete option for users to remove books from the list.
 
+### **Additional Features I Made:**
+- **Star Ratings:** Allows users to rate each book with star icons.
+- **Edit Functionality:** Enables users to edit book details, including title, author, and read status.
+- **Filter Options:** Users can filter books by various criteria:
+  - **Title**  
+  - **Pages (ascending or descending)**  
+  - **Rating**  
+  - **Author**  
+  - **No filter**  
 
-# Usage Guidelines:
-## Write this
+---
 
-# Future Improvements Planned:
-## Maybe use of pictures to be allowed.
-## Write some more below
+## **Usage Guidelines**
+1. Open the application using my github pages link.
+2. Add books by clicking the "New Book" button and filling out the form.
+3. Edit or delete books using the respective buttons.
+4. Use the filter dropdown to organize your book collection by title, rating, pages high to low, pages low to high, or author.
 
-# Learning Outcomes:
-## How to make my code look better.
-## Using objects in JS
-## Write some more below
+---
 
+## **Future Improvements Planned**
+- **Picture Uploads:** Allow users to attach book cover images.
+- **Local Storage:** Save books in local storage so the data persists across page reloads.
+- **Search Bar:** Implement a search feature for faster book lookups.
+- **User Authentication:** Add user accounts for personalized book collections.
+
+---
+
+## **Learning Outcomes**
+- **Clean Code Practices:** Improved understanding of how to organize JS code efficiently.
+- **Object-Oriented Programming:** Gained experience in using objects and constructors to manage the library data.
+- **DOM Manipulation:** Learned to create, display, and remove certain HTML elements.
+- **Event Handling:** Improved knowledge of capturing and responding to user actions/input.
 
 <!-- 
 Tasks To-Do:
